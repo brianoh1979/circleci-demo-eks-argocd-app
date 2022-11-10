@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@8.1.2
+  aws-ecr: circleci/aws-ecr@0.0.2
   github-cli: circleci/github-cli@2.0.0
   node: circleci/node@5.0.2
 
@@ -14,10 +14,10 @@ jobs:
     steps:
       - checkout
       - aws-ecr/build-and-push-image:
-          assume-web-identity: true
-          role-arn: arn:aws:iam::660990364978:role/tadashi_oidc_fargate
-          repo: tadashi-eks-argocd-demo
-          tag: '${CIRCLE_SHA1:0:7}'
+          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          region: ${AWS_DEFAULT_REGION}
+          tag: "${CIRCLE_SHA1}"
 
   create_release_pr:
     docker:
@@ -58,7 +58,6 @@ workflows:
           name: build
           npm-run: build
       - build_push_ecr:
-          context: aws-oidc-fargate
           filters:
             branches:
               only: master
