@@ -49,7 +49,7 @@ jobs:
       - run: sleep 10
       - run:
           name: Create Pull Request
-          command: gh pr create --fill -p "circleci-demo-eks-argocd-app"
+          command: gh pr create -t "Release circleci-demo-eks-argocd-app ${CIRCLE_SHA1:0:7}" -b "Pull Request test"
 
 workflows:
   test_and_deploy: 
