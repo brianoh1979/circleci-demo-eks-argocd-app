@@ -43,11 +43,11 @@ jobs:
             git remote set-url --push origin git@github.com:brianoh1979/circleci-demo-eks-argocd-manifest.git
             git checkout -b release123
             git add .
-            git commit -m"Release circleci-demo-eks-argocd-app ${CIRCLE_SHA1:0:7}"
+            git commit -m "Release circleci-demo-eks-argocd-app ${CIRCLE_SHA1:0:7}"
             git push origin HEAD --force
       - run:
           name: Create Pull Request
-          command: gh pr create -t "Release circleci-demo-gitops-app ${CIRCLE_SHA1:0:7}" -b "" --head release123
+          command: gh pr create -t "Release circleci-demo-gitops-app ${CIRCLE_SHA1:0:7}" -b "Test Fix" --head release123
 
 workflows:
   test_and_deploy: 
@@ -61,7 +61,7 @@ workflows:
       - build_push_ecr:
           filters:
             branches:
-              only: master
+              only: main
       - create_release_pr:
           requires:
             - build_push_ecr
