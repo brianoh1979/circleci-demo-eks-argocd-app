@@ -47,7 +47,7 @@ jobs:
             git push origin HEAD --force
       - run:
           name: Create Pull Request
-          command: gh pr create -t "Release circleci-demo-gitops-app ${CIRCLE_SHA1:0:7}" -b "Test Fix" --head release123
+          command: gh pr create -t "Release circleci-demo-gitops-app ${CIRCLE_SHA1:0:7}" -b "Test Fix" 
 
 workflows:
   test_and_deploy: 
