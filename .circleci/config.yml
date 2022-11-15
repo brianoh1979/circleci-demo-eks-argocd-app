@@ -41,7 +41,7 @@ jobs:
             git config --global user.email "gitops@example.com"
             git config --global user.name "GitOps Bot"
             git remote set-url --push origin git@github.com:brianoh1979/circleci-demo-eks-argocd-manifest.git
-            git checkout -b release123
+            git checkout -b release124
             git add .
             git commit -m "Release circleci-demo-eks-argocd-app ${CIRCLE_SHA1:0:7}"
             git push origin HEAD --force
