@@ -26,7 +26,7 @@ jobs:
     steps:
       - github-cli/setup
       - github-cli/clone:
-          repo: git@github.com:tadashi0713/circleci-demo-eks-argocd-manifest.git
+          repo: git@github.com:brianoh1979/circleci-demo-eks-argocd-manifest.git
       - run:
           name: Change image tag
           working_directory: base
